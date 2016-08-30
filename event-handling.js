@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM content loaded");
 
+    // capturing vs. bubbling
+    
     document.getElementById('capture-div').addEventListener(
         'click',
         function() {
@@ -19,8 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         'click',
         function() {
             console.log('clicked capture-li');
-        },
-        true);
+        });
 
     document.getElementById('bubble-div').addEventListener(
         'click',
@@ -41,7 +42,14 @@ document.addEventListener("DOMContentLoaded", function() {
         function() {
             console.log('bubbling is the default');
             console.log('clicked bubble-li');
-        },
-        false);
+        });
 
+    // prevent default event
+
+    document.getElementById('prevent-default-link').addEventListener(
+        'click',
+        function(event) {
+            event.preventDefault();
+            console.log(event);
+        });
 });
