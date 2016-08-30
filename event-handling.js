@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("DOM content loaded");
 
     // capturing vs. bubbling
-    
+
     document.getElementById('capture-div').addEventListener(
         'click',
         function() {
