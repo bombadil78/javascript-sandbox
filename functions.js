@@ -73,3 +73,14 @@ myFunction(1, 2, 3);
 console.log("passing not all arguments");
 myFunction(1, 2);
 console.log("only the passed arguments are stored in arguments");
+
+console.log("arguments are dynamic");
+var mySum = function() {
+    var sum = 0;
+    for (var i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+}
+var sum = mySum(1, 2, 3);
+console.log(sum);
