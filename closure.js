@@ -1,15 +1,9 @@
-// can access outer scope
-function foo() {
-    var x = 1;
-
-    var bar = function() {
-        console.log(x);
-    }
-
-    bar();
+function foo(x) {
+    var y = x * x;
+    return function(z) {
+        return y + z;
+    };
 }
-
-foo();
 
 function fadeOut(element, interval) {
     var currentOpacity = 100;
@@ -27,26 +21,31 @@ function fadeOut(element, interval) {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    // can access outer scope even if outer scope has finished
     function bindAll() {
-
         var bindMe = function(i) {
             return function() {
                 alert(i);
             };
         };
-
         var lis = document.getElementsByTagName('li');
         for (var i = 0; i < lis.length; i++) {
             lis[i].addEventListener('click', bindMe(i));
         }
-
     }
     bindAll();
 
-    // can access outer scope even if outer scope has finished (advanced)
     var btn = document.getElementById("myButton");
     btn.addEventListener('click', function() {
         fadeOut(btn, 100);
     });
+
+    var f1 = foo(1);
+    console.log(f1(0));
+
+    var f2 = foo(2);
+    console.log(f2(1));
+
+    var f3 = foo(3);
+    console.log(f3(3));
 });
+
