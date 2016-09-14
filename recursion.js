@@ -25,11 +25,18 @@ function findAllSolutions(target) {
         } else if (src > target) {
             return null;
         } else {
-            var firstSolution = find(src + 5, "(" + history + " + 5)");
-            var secondSolution = find(src * 3, "(" + history + " * 3)");
-            return [ firstSolution, secondSolution ]
-                .filter(function(x) { return x != null; })
-                .join("\n");
+            var first = find(src + 5, "(" + history + " + 5)");
+            var second = find(src * 3, "(" + history + " * 3)");
+
+            var solutions = [];
+            if (first !== null) solutions.push(first);
+            if (second !== null) solutions.push(second);
+
+            if (solutions.length > 0) {
+                return solutions.join("\n");
+            } else {
+                return null;
+            }
         }
     }
 
@@ -41,6 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var x = findOneSolution(67);
     console.log(x);
 
-    var y = findAllSolutions(18);
+    var y = findAllSolutions(54);
     console.log(y);
 });
