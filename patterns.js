@@ -1,6 +1,5 @@
 var animal = function(id) {
-    var that = { id: id };
-    return that;
+    return {};
 };
 
 var bird = function(id, name) {
@@ -9,16 +8,18 @@ var bird = function(id, name) {
     // since it is the method form, this is bound to the object
     // the object was created by animal() and augmented here
     that.feep = function() {
-        return "Feep: " + this.id + " / " + this.name;
+        return "Feep: " + id + " / " + this.name;
     };
     return that;
 };
 
 var superBird = function(id, name) {
     var that = bird(id, name);
-    var normalFeep = that.feep();
+    // get a reference to super method ...
+    var superFeep = that.feep;
     that.feep = function() {
-        return normalFeep + "!!!";
+        // ... apply it on subclasses' object
+        return superFeep.apply(that);
     };
     return that;
 };
