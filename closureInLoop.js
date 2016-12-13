@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var currentChild = otherList.firstElementChild;
     while (currentChild !== null) {
         currentChild.onclick = function(v) {
+            // v is now in the scope of the handler function ...
+            // ... and v is distinct for each onclick function
             var handler = function() {
                 console.log(v);
             };

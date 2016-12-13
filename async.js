@@ -1,36 +1,34 @@
-function blocking() {
-    console.log("blocking called");
-    var i = 0;
-    while (i < 10000000000) {
-        i++;
-    }
-    return i;
+function foo() {
+    console.log("foo");
 }
 
-function nonBlocking(callBack) {
-    console.log("non-blocking called");
-    var i = 0;
-    while (i < 10000000000) {
-        i++;
-    }
-    callBack(i);
+function bar() {
+    console.log("bar");
 }
 
-function doSthElse() {
-    console.log("do sth else");
+function callback(callback) {
+    console.log("callback")
+    callback();
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("blocking version:");
-    var result = blocking();
-    console.log("result=" + result);
-    doSthElse();
+/*
+foo();
+setTimeout(foo, 0);
+bar();
+setTimeout(bar, 0);
+*/
 
-    console.log("non-blocking version:");
-    nonBlocking(function(result) {
-        console.log("result=" + result);
-    });
-    doSthElse();
+callback(function() {
+    console.log("#1");
+});
+callback(function() {
+    console.log("#2");
+});
 
+callback(() => {
+    console.log("no cb #1");
+});
 
+callback(() => {
+    console.log("no cb #2");
 });
